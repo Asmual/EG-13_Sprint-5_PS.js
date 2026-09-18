@@ -246,3 +246,27 @@ var checkSubarraySum = function(nums, k) {
 // console.log(checkSubarraySum([23, 2, 4, 6, 7], 6));
 // Expected Output: true
 
+/********** 10. Daily Temperatures **********/
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+var dailyTemperatures = function(temperatures) {
+    const n = temperatures.length;
+    const result = new Array(n).fill(0);
+    const stack = [];
+
+    for (let i = 0; i < n; i++) {
+        while (stack.length > 0 && temperatures[i] > temperatures[stack[stack.length - 1]]) {
+            const prevIndex = stack.pop();
+            result[prevIndex] = i - prevIndex;
+        }
+        stack.push(i);
+    }
+
+    return result;
+};
+
+// console.log(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]));
+// Expected Output: [1, 1, 4, 2, 1, 1, 0, 0]
+
