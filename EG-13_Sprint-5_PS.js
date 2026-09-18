@@ -163,3 +163,55 @@ var rotate = function(nums, k) {
 // console.log(nums7);
 // Expected Output: [5, 6, 7, 1, 2, 3, 4]
 
+/********** 08. Min Stack **********/
+/**
+ * @return {void}
+ */
+var MinStack = function() {
+    this.stack = [];
+    this.minStack = [];
+};
+
+/** 
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function(val) {
+    this.stack.push(val);
+    if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]) {
+        this.minStack.push(val);
+    }
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    const val = this.stack.pop();
+    if (val === this.minStack[this.minStack.length - 1]) {
+        this.minStack.pop();
+    }
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.stack[this.stack.length - 1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.minStack[this.minStack.length - 1];
+};
+
+// const minStack = new MinStack();
+// minStack.push(-2);
+// minStack.push(0);
+// minStack.push(-3);
+// console.log(minStack.getMin()); // Expected Output: -3
+// minStack.pop();
+// console.log(minStack.getMin()); // Expected Output: -2
+
