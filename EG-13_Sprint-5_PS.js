@@ -72,3 +72,20 @@ var searchInsert = function(nums, target) {
 // console.log(searchInsert([1, 3, 5, 6], 5));
 // Expected Output: 2
 
+/********** 04. Maximum Depth of Binary Tree **********/
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+    if (root === null) return 0;
+    let leftDepth = maxDepth(root.left);
+    let rightDepth = maxDepth(root.right);
+    return Math.max(leftDepth, rightDepth) + 1;
+};
+
+// function TreeNode(val, left, right) { this.val = (val===undefined ? 0 : val); this.left = (left===undefined ? null : left); this.right = (right===undefined ? null : right); }
+// const tree4 = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
+// console.log(maxDepth(tree4));
+// Expected Output: 3
+
